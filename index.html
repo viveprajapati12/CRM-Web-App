@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CRM System</title>
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS file -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- Top section -->
+    <header>
+      <div class="logo">CEMSystem<span>.</span>com</div>
+      <span class="badge">v1.0 - LIVE</span>
+    </header>
+
+    <!-- Customer statistics cards -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Customers</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Basic Plan</div>
+        <div class="stat-value" id="stat-basic">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Premium Plan</div>
+        <div class="stat-value" id="stat-premium">0</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Enterprise</div>
+        <div class="stat-value" id="stat-enterprise">0</div>
+      </div>
+    </div>
+
+    <!-- Main content area -->
+    <div class="main-grid">
+
+      <!-- Form to add a new customer -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="dot"></div>
+          <div class="panel-title">Add Customer</div>
+        </div>
+
+        <div class="panel-body">
+          <div class="field">
+            <label>Full Name</label>
+            <input type="text" id="inp-name" placeholder="e.g. Rahul Sharma" />
+          </div>
+
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" id="inp-email" placeholder="rahul@company.com" />
+          </div>
+
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="text" id="inp-phone" placeholder="9876543210" />
+          </div>
+
+          <div class="field">
+            <label>Plan</label>
+            <select id="inp-plan">
+              <option value="Basic">Basic</option>
+              <option value="Premium">Premium</option>
+              <option value="Enterprise">Enterprise</option>
+            </select>
+          </div>
+
+          <button class="btn-add" onclick="addCustomer()">+ Add Customer</button>
+        </div>
+      </div>
+
+      <!-- Customer table section -->
+      <div class="panel">
+
+        <!-- Search and filter buttons -->
+        <div class="table-toolbar">
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input
+              type="text"
+              id="search-inp"
+              placeholder="Search by name or email..."
+              oninput="renderTable()"
+            />
+          </div>
+
+          <div class="filter-btns">
+            <button class="filter-btn active" data-plan="All" onclick="setFilter(this)">All</button>
+            <button class="filter-btn" data-plan="Basic" onclick="setFilter(this)">Basic</button>
+            <button class="filter-btn" data-plan="Premium" onclick="setFilter(this)">Premium</button>
+            <button class="filter-btn" data-plan="Enterprise" onclick="setFilter(this)">Enterprise</button>
+          </div>
+        </div>
+
+        <!-- Customer list table -->
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Plan</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="table-body"></tbody>
+          </table>
+
+          <!-- This message appears when no customer is found -->
+          <div class="empty" id="empty-state" style="display: none">
+            <div class="empty-icon">◎</div>
+            <p>No customers found</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Small message popup -->
+  <div class="toast" id="toast"></div>
+
+  <!-- JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>

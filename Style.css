@@ -1,0 +1,484 @@
+/* Basic reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Common colors used in the project */
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface2: #1a1a24;
+  --border: #2a2a3a;
+  --accent: #6c63ff;
+  --accent2: #ff6584;
+  --accent3: #43e97b;
+  --text: #f0f0ff;
+  --text2: #8888aa;
+  --text3: #555570;
+}
+
+/* Page background and font */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Small grid pattern in the background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Soft purple glow effect */
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.12) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main page container */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* Header section */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(108, 99, 255, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Stats cards */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  border-color: var(--accent);
+}
+
+/* Small color line on each stats card */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.stat-card:nth-child(1)::before {
+  background: var(--accent);
+}
+
+.stat-card:nth-child(2)::before {
+  background: #43e97b;
+}
+
+.stat-card:nth-child(3)::before {
+  background: #f7971e;
+}
+
+.stat-card:nth-child(4)::before {
+  background: var(--accent2);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text2);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+/* Main layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Common panel design */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.panel-body {
+  padding: 24px;
+}
+
+/* Form fields */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text2);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
+.field select option {
+  background: var(--surface2);
+}
+
+/* Add button */
+.btn-add {
+  width: 100%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.btn-add:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Search and filter area */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-wrap {
+  flex: 1;
+  position: relative;
+}
+
+.search-wrap input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 14px 9px 36px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+}
+
+.search-wrap input:focus {
+  border-color: var(--accent);
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text3);
+  font-size: 14px;
+}
+
+/* Filter buttons */
+.filter-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.filter-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: rgba(108, 99, 255, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Customer table */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(42, 42, 58, 0.5);
+  animation: fadeIn 0.25s ease;
+}
+
+tbody tr:hover {
+  background: rgba(108, 99, 255, 0.04);
+}
+
+td {
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text2);
+  white-space: nowrap;
+}
+
+td:first-child {
+  color: var(--text3);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+td.name {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Plan badges */
+.plan-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.plan-Basic {
+  background: rgba(255, 255, 255, 0.06);
+  color: #aaa;
+}
+
+.plan-Premium {
+  background: rgba(247, 151, 30, 0.15);
+  color: #f7971e;
+}
+
+.plan-Enterprise {
+  background: rgba(108, 99, 255, 0.15);
+  color: var(--accent);
+}
+
+/* Delete button */
+.btn-del {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text3);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-del:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(255, 101, 132, 0.08);
+}
+
+/* Empty message */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text3);
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.empty p {
+  font-size: 14px;
+}
+
+/* Small popup message */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--surface);
+  border: 1px solid var(--accent3);
+  color: var(--accent3);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+/* Row animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-btns {
+    display: none;
+  }
+}
